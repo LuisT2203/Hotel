@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+	<head>
+		<title>Gestor</title>		
+	</head>
+	<body>
+		<form th:action="@{/logout}" method="post">		
+			<p>				
+				<input type="submit" value="Cerrar sesión"/>
+			</p>
+		</form>	
+	</body>
+</html>

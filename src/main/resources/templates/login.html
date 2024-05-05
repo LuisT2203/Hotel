@@ -6,33 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de Usuarios</title>
   <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
-  <link rel="stylesheet" th:href="@{css/style.css}">
+  <link rel="stylesheet" href="/css/login.css">
+  
 </head>
 <body>
   <div class="container" id="container">
 
-	<div class="form-container register-container" th:if=${param.exito}>
+	<!--<div class="form-container register-container" th:if=${param.exito}>
 		<div class="alert alert-info">Se ha registrado exitosamente a
 			la aplicación</div>
-		<form th:action="@{/registro}" method="post" th:object="${usuario}">
+		<form method="post" th:action="@{/usuario/registro}"
+			th:object="${usuario}">
 			<h1>Register hire.</h1>
 			<div class="form-group">
-				<label class="control-label" for="apellido">Nombre: </label>
-				<input id="nombre" type="text" class="form-control" th:field="*{nombre}" required autofocus="autofocus">
-			</div>
-			<div class="form-group">
-				<label class="control-label" for="apellido">Apellido : </label> 
-				<input id="apellido" class="form-control" th:field="*{apellido}" required autofocus="autofocus">
+				<label class="control-label" for="apellido">Usuario: </label>
+				<input id="correo" type="text" class="form-control" th:field="*{correo}" required autofocus="autofocus">
 			</div>
 	
 			<div class="form-group">
-				<label class="control-label" for="email">Email : </label> 
-				<input id="email" type="email" class="form-control" th:field="*{email}" required autofocus="autofocus">
-			</div>
-	
-			<div class="form-group">
-				<label class="control-label" for="password">Password : </label> 
-				<input type="password" id="password" class="form-control" th:field="*{password}" required autofocus="autofocus">
+				<label class="control-label" for="password">Contraseña : </label> 
+				<input type="password" id="clave" class="form-control" th:field="*{clave}" required autofocus="autofocus">
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-success">Registrar</button>
@@ -44,13 +37,13 @@
           <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
         </div>
       </form>
-    </div>
+    </div>-->
 
     <div class="form-container login-container">
-      <form action="#">
+      <form th:action="@{/login}" method="post">
         <h1>Login hire.</h1>
-        <input type="email" placeholder="Email">
-        <input type="password" placeholder="Password">
+        <input type="email" name="correo" placeholder="Email">
+        <input type="password" name="clave" placeholder="Password">
         <div class="content">
           <div class="checkbox">
             <input type="checkbox" name="checkbox" id="checkbox">
@@ -60,7 +53,7 @@
             <a href="#">Forgot password?</a>
           </div>
         </div>
-        <button>Login</button>
+        <button type="submit">Login</button>
         <span>or use your account</span>
         <div class="social-container">
           <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
@@ -70,7 +63,7 @@
       </form>
     </div>
 
-    <div class="overlay-container">
+  <!--  <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-left">
           <h1 class="title">Hello <br> friends</h1>
@@ -87,7 +80,7 @@
           </button>
         </div>
       </div>
-    </div>
+    </div>-->
 
   </div>
 

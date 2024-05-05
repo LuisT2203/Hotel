@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="ISO-8859-1">
     <meta charset="utf-8">
@@ -106,7 +107,11 @@
                                     </ul>
                                 </div>
                                 <div class="book_btn d-none d-lg-block">
-                                    <a class="popup-with-form" href="#test-form">Reservar Ahora</a>
+									<form action="@{/logout}" method="post">
+										<p>
+											<input type="submit" value="Cerrar Sesion">
+										</p>
+									</form>
                                 </div>
                             </div>
                         </div>

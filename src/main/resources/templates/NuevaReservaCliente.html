@@ -30,12 +30,19 @@
 							<label>Cantidad de Dias</label>
 							<input th:field="*{cant_dias}" type="text" class="form-control"/>
 						</div>
-						<div class="form-group">
-						<label>Tipo de Habitacion</label>
-						<select th:field="*{nro_habi}" class="form-control">
-							<option th:each="habitacion : ${habitaciones}" th:value="${habitacion.nro_habi}" th:text="${habitacion.descripcion}">Tipo de Habitacion</option>
-						</select>
-					</div>
+						 <div class="form-group">
+                        <label>Nro Habitacion</label>
+                        <div th:each="habitacion : ${habitaciones}">
+                            <div class="form-check">
+                                <input th:id="${'habitacion_' + habitacion.nro_habi}" th:field="*{nro_habi}" type="radio" th:value="${habitacion.nro_habi}" class="form-check-input"/>
+                                <label th:for="${'habitacion_' + habitacion.nro_habi}" class="form-check-label">
+                                    <img th:src="${'img/rooms/1.png'}" alt="Imagen de la habitación" style="max-width: 100px; max-height: 100px;"/>
+                                    <!-- Añade el nombre de la habitación u otra información si es necesario -->
+                                    <span th:text="${habitacion.descripcion}"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
 					<div class="form-group">
 						<label>Nombre de Huesped</label>
 						<select th:field="*{id_huesped}" class="form-control">

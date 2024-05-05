@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hotel.demo.interfacesService.IdetalleServicioService;
+
 import com.hotel.demo.interfacesService.IempleadoService;
 import com.hotel.demo.interfacesService.IhabitacionService;
 import com.hotel.demo.interfacesService.IhuespedService;
 import com.hotel.demo.interfacesService.IreservaService;
 import com.hotel.demo.interfacesService.IservicioService;
-import com.hotel.demo.modelo.Detalle_Servicio;
+
 import com.hotel.demo.modelo.Empleado;
 import com.hotel.demo.modelo.Habitacion;
 import com.hotel.demo.modelo.Huesped;
@@ -99,16 +99,7 @@ public class ControladorReserva {
 		service.Borrar(Nro_reserva);
 		return "redirect:/listarReserva";
 	}
-	@GetMapping("/index1")
-	public String index1 (){
-		
-		return "index1";
-	}
-	@GetMapping("/index")
-	public String index (){
-		
-		return "index";
-	}
+	
 	
 
 }
