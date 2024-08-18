@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -41,24 +42,22 @@ public class WebSecurityConfig {
 				.requestMatchers("/index1")
 				.authenticated()
 				.anyRequest().permitAll()
-				)
-				.formLogin(
-						login -> login
-						.loginPage("/login")
-						.usernameParameter("correo")
-						.passwordParameter("clave")
-						.defaultSuccessUrl("/index1")
-						.permitAll()
-						)
+				).csrf(AbstractHttpConfigurer::disable)
+//				.formLogin(
+//						login -> login
+//						.loginPage("/login")
+//						.usernameParameter("correo")
+//						.passwordParameter("clave")
+//						.defaultSuccessUrl("/index1")
+//						.permitAll()
+//						)
 				.logout(
 						logout -> logout.logoutSuccessUrl("/")
 						.permitAll()
 						)
 		;
-		http
-	    .headers(headers -> headers
-	        .frameOptions(frameOptions -> frameOptions
-	        .sameOrigin()));
+		
+		
 		return http.build();
 	}
 

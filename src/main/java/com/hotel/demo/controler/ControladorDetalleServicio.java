@@ -3,75 +3,69 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.demo.interfacesService.IdetalleServicioService;
-import com.hotel.demo.interfacesService.IempleadoService;
-import com.hotel.demo.interfacesService.IreservaService;
-import com.hotel.demo.interfacesService.IservicioService;
+import com.hotel.demo.service.DetalleServicioService;
+import com.hotel.demo.service.EmpleadoService;
+import com.hotel.demo.service.ReservaService;
+import com.hotel.demo.service.ServicioService;
+
+import com.hotel.demo.modelo.Detalle_Reserva;
 import com.hotel.demo.modelo.Detalle_Servicio;
-import com.hotel.demo.modelo.Empleado;
-import com.hotel.demo.modelo.Reserva;
-import com.hotel.demo.modelo.Servicio;
 
 
-@Controller
-@RequestMapping
+
+@RestController
+@RequestMapping(value = "detalleservicio", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class ControladorDetalleServicio {
 	@Autowired
-	private IdetalleServicioService serviceDS;
+	private DetalleServicioService serviceDS;
 	@Autowired
 	@Lazy
-	private IreservaService serviceR;
+	private ReservaService serviceR;
 	@Autowired
-	private IempleadoService serviceE;
+	private EmpleadoService serviceE;
 	@Autowired
-	private IservicioService serviceS;
+	private ServicioService serviceS;
 	
-	@GetMapping("/listarDetalleServicio")
-	public String listar(Model model) {
-		List<Detalle_Servicio>detservicios = serviceDS.listarDetServicio();
-		model.addAttribute("detservicios",detservicios);
-		return "DetalleServicio";
+	@GetMapping
+	public List<Detalle_Servicio> listarDetalle_Servicio() {
+		return serviceDS.listarDetServicio();
+		
+	}
+	@GetMapping("/{Id_detservicio}")
+	public Detalle_Servicio editar(@PathVariable ("Id_detservicio")  int Id_detservicio) {
+		return serviceDS.listarId(Id_detservicio);
+		
 	}
 	
-	@GetMapping("/newDetalleServicio")
-	public String agregar(Model model) {
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Detalle_Servicio insertarDetalle_Servicio(@RequestBody Detalle_Servicio ds) {
+		return serviceDS.Guardar(ds);
 		
-		List<Empleado>empleados = serviceE.listarEmpleado();		
-		List<Reserva>reservas = serviceR.listarReserva();	
-		List<Servicio>servicios = serviceS.listarServicio();
-		model.addAttribute("empleados",empleados);	
-		model.addAttribute("reservas", reservas);
-		model.addAttribute("servicios", servicios);
-		model.addAttribute("detservicio", new Detalle_Servicio());
+	}
+	@PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Detalle_Servicio actualizarDetalle_Servicio(@RequestBody Detalle_Servicio ds) {
+		return serviceDS.Guardar(ds);
 		
-		return "NuevoDetalleServicio";
 	}
-	@PostMapping("/saveDetalleServicio")
-	public String guardarDS(@Validated Detalle_Servicio ds, Model model) {
-		serviceDS.Guardar(ds);
-		return "redirect:/listarDetalleServicio";
-	}
-	@GetMapping("/editarDetalleServicio/{Id_detservicio}")
-	public String editar(@PathVariable int Id_detservicio, Model model) {
-		Optional<Detalle_Servicio>detservicio=serviceDS.listarId(Id_detservicio);
-		List<Empleado>empleados = serviceE.listarEmpleado();		
-		List<Reserva>reservas = serviceR.listarReserva();
-		model.addAttribute("empleados",empleados);	
-		model.addAttribute("reservas", reservas);
-		model.addAttribute("detservicio", detservicio);
-		return "NuevoDetalleServicio";
-	}
-	@GetMapping("/eliminarDetalleServicio/{Id_detservicio}")
-	public String delete(Model model, @PathVariable int Id_detservicio) {
-		serviceDS.Borrar(Id_detservicio);
-		return "redirect:/listarDetalleServicio";
+	
+	@DeleteMapping("/{Id_detservicio}")
+	public Detalle_Servicio eliminar(@PathVariable ("Id_detservicio")  int Id_detservicio) {
+		return serviceDS.Borrar(Id_detservicio);
+		
 	}
 }

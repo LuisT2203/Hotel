@@ -1,5 +1,6 @@
 package com.hotel.demo.modelo;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,51 +20,47 @@ public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int nro_reserva;
-	private Date fecha_reserva;
+	private LocalDate fecha_reserva;
 	private int cant_personas;
 	private int cant_dias;
-	private int nro_habi;
-	private int id_huesped;
-	@Column(nullable = true)
-	private Integer id_emp;
-	private int id_servicio;
+	
+	@ManyToOne
+	@JoinColumn(name="nro_habi", referencedColumnName="nro_habi")
+	private Habitacion habitacion;
+	
+	@ManyToOne
+	@JoinColumn(name="id_huesped", referencedColumnName="id_huesped")
+	private Huesped huesped;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_emp", referencedColumnName = "id_emp")
+	private Empleado empleado;
+	
+	@ManyToOne
+	@JoinColumn(name="id_servicio",  referencedColumnName = "id_servicio")
+	private Servicio servicio;
+
 	private String estado_reserva;
 	
-	public Reserva() {
-		this.detallesServicio = new HashSet<>();
-		this.detallesReserva = new HashSet<>();
-	}
-
 	
 
-	public Reserva(int nro_reserva, Date fecha_reserva, int cant_personas, int cant_dias, int nro_habi, int id_huesped,
-			Integer id_emp, int id_servicio, String estado_reserva) {
+	public Reserva() {
+		super();
+	}
+
+	public Reserva(int nro_reserva, LocalDate fecha_reserva, int cant_personas, int cant_dias, Habitacion habitacion,
+			Huesped huesped, Empleado empleado, Servicio servicio, String estado_reserva) {
 		super();
 		this.nro_reserva = nro_reserva;
 		this.fecha_reserva = fecha_reserva;
 		this.cant_personas = cant_personas;
 		this.cant_dias = cant_dias;
-		this.nro_habi = nro_habi;
-		this.id_huesped = id_huesped;
-		this.id_emp = id_emp;
-		this.id_servicio = id_servicio;
+		this.habitacion = habitacion;
+		this.huesped = huesped;
+		this.empleado = empleado;
+		this.servicio = servicio;
 		this.estado_reserva = estado_reserva;
 	}
-
-
-
-	public Reserva(int nro_reserva, Date fecha_reserva, int cant_personas, int cant_dias, int nro_habi,
-			int id_huesped) {
-		super();
-		this.nro_reserva = nro_reserva;
-		this.fecha_reserva = fecha_reserva;
-		this.cant_personas = cant_personas;
-		this.cant_dias = cant_dias;
-		this.nro_habi = nro_habi;
-		this.id_huesped = id_huesped;
-	}
-
-
 
 	public int getNro_reserva() {
 		return nro_reserva;
@@ -73,11 +70,11 @@ public class Reserva {
 		this.nro_reserva = nro_reserva;
 	}
 
-	public Date getFecha_reserva() {
+	public LocalDate getFecha_reserva() {
 		return fecha_reserva;
 	}
 
-	public void setFecha_reserva(Date fecha_reserva) {
+	public void setFecha_reserva(LocalDate fecha_reserva) {
 		this.fecha_reserva = fecha_reserva;
 	}
 
@@ -97,45 +94,6 @@ public class Reserva {
 		this.cant_dias = cant_dias;
 	}
 
-	public int getNro_habi() {
-		return nro_habi;
-	}
-
-	public void setNro_habi(int nro_habi) {
-		this.nro_habi = nro_habi;
-	}
-
-	public int getId_huesped() {
-		return id_huesped;
-	}
-
-	public void setId_huesped(int id_huesped) {
-		this.id_huesped = id_huesped;
-	}
-
-	
-
-	public Integer getId_emp() {
-		return id_emp;
-	}
-
-
-
-	public void setId_emp(Integer id_emp) {
-		this.id_emp = id_emp;
-	}
-
-
-
-	public int getId_servicio() {
-		return id_servicio;
-	}
-
-	public void setId_servicio(int id_servicio) {
-		this.id_servicio = id_servicio;
-	}
-	
-	
 	
 	public String getEstado_reserva() {
 		return estado_reserva;
@@ -147,85 +105,40 @@ public class Reserva {
 		this.estado_reserva = estado_reserva;
 	}
 
-
-
-	@ManyToOne
-	@JoinColumn(name="nro_habi", insertable=false,updatable=false)
-	private Habitacion objHabitacion;
-	
-	@ManyToOne
-	@JoinColumn(name="id_huesped", insertable=false,updatable=false)
-	private Huesped objHuesped;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_emp", referencedColumnName = "id_emp", insertable = false, updatable = false)
-	private Empleado objEmpleado;
-	
-	@ManyToOne
-	@JoinColumn(name="id_servicio", insertable=false,updatable=false)
-	private Servicio objServicio;
-	
-	@OneToMany(mappedBy = "objReserva", cascade = CascadeType.ALL)
-    private Set<Detalle_Servicio> detallesServicio = new HashSet<>();
-    
-    @OneToMany(mappedBy = "objReserva", cascade = CascadeType.ALL)
-    private Set<Detalle_Reserva> detallesReserva = new HashSet<>();
-
-	public Habitacion getObjHabitacion() {
-		return objHabitacion;
+	public Habitacion getHabitacion() {
+		return habitacion;
 	}
 
-	public void setObjHabitacion(Habitacion objHabitacion) {
-		this.objHabitacion = objHabitacion;
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
 
-	public Huesped getObjHuesped() {
-		return objHuesped;
+	public Huesped getHuesped() {
+		return huesped;
 	}
 
-	public void setObjHuesped(Huesped objHuesped) {
-		this.objHuesped = objHuesped;
+	public void setHuesped(Huesped huesped) {
+		this.huesped = huesped;
 	}
 
-	public Empleado getObjEmpleado() {
-		return objEmpleado;
+	public Empleado getEmpleado() {
+		return empleado;
 	}
 
-	public void setObjEmpleado(Empleado objEmpleado) {
-		this.objEmpleado = objEmpleado;
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 
-	public Servicio getObjServicio() {
-		return objServicio;
+	public Servicio getServicio() {
+		return servicio;
 	}
 
-	public void setObjServicio(Servicio objServicio) {
-		this.objServicio = objServicio;
+	public void setServicio(Servicio servicio) {
+		this.servicio = servicio;
 	}
 
 
 
-	public Set<Detalle_Servicio> getDetallesServicio() {
-		return detallesServicio;
-	}
-
-
-
-	public void setDetallesServicio(Set<Detalle_Servicio> detallesServicio) {
-		this.detallesServicio = detallesServicio;
-	}
-
-
-
-	public Set<Detalle_Reserva> getDetallesReserva() {
-		return detallesReserva;
-	}
-
-
-
-	public void setDetallesReserva(Set<Detalle_Reserva> detallesReserva) {
-		this.detallesReserva = detallesReserva;
-	}
 	
 	
 }

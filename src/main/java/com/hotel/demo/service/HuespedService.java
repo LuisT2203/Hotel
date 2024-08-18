@@ -1,41 +1,42 @@
 package com.hotel.demo.service;
 import java.util.List;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import com.hotel.demo.interfaces.IHuesped;
-import com.hotel.demo.interfacesService.IhuespedService;
+
 import com.hotel.demo.modelo.Huesped;
 @Service
-public class HuespedService implements IhuespedService{
+public class HuespedService{
 	@Autowired
 	private IHuesped data;
-	@Override
+	
 	public List<Huesped> listarHuesped() {
 		return (List<Huesped>)data.findAll();
 	}
 
-	@Override
-	public Optional<Huesped> listarId(int Id_huesped) {
+	
+	public Huesped listarId(int Id_huesped) {
 		// TODO Auto-generated method stub
-		return data.findById(Id_huesped);
+		return data.findById(Id_huesped).orElse(new Huesped());
 	}
 
-	@Override
-	public int Guardar(Huesped h) {
-		int res=0;
-		Huesped huesped=data.save(h);
-		if (!huesped.equals(null)) {
-			res=1;
+	
+	public Huesped Guardar(Huesped h) {
+		return data.save(h);
+	}
+
+	
+	public Huesped Borrar(int Id_huesped) {
+		Huesped temp = data.findById(Id_huesped).orElse(null);
+		if(temp==null) {
+			return new Huesped();
+		}else {
+			data.deleteById(Id_huesped);
+			return temp;
 		}
-		return res;
-	}
-
-	@Override
-	public void Borrar(int Id_huesped) {
-		data.deleteById(Id_huesped);
 		
 	}
 

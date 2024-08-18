@@ -2,47 +2,57 @@ package com.hotel.demo.controler;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.demo.interfacesService.IempleadoService;
+import com.hotel.demo.service.EmpleadoService;
+
 import com.hotel.demo.modelo.Empleado;
-@Controller
-@RequestMapping
+
+@RestController
+@RequestMapping(value = "empleado", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class ControladorEmpleado {
 	@Autowired
-	private IempleadoService service;
-	@GetMapping("/listarEmpleado")
-	public String listar(Model model) {
-		List<Empleado>empleados = service.listarEmpleado();
-		model.addAttribute("empleados",empleados);
-		return "Empleado";
+	EmpleadoService service;
+	
+	@GetMapping
+	public List<Empleado> listarEmpleados() {
+		return service.listarEmpleado();
+	
 	}
-	@GetMapping("/newEmpleado")
-	public String agregar(Model model) {
-		model.addAttribute("empleado",new Empleado());
-		return "NuevoEmpleado";
+	@GetMapping("/{Id_emp}")
+	public Empleado editar(@PathVariable ("Id_emp")  Integer Id_emp) {
+		return service.listarId(Id_emp);
+		
 	}
-	@PostMapping("/saveEmpleado")
-	public String guardar(@Validated Empleado e, Model model) {
-		service.Guardar(e);
-		return "redirect:/listarEmpleado";
+	
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Empleado insertarEmpleado(@RequestBody Empleado e) {
+		return service.Guardar(e);
+		
 	}
-	@GetMapping("/editarEmpleado/{Id_empleado}")
-	public String editar(@PathVariable Integer Id_empleado, Model model) {
-		Optional<Empleado>empleado=service.listarId(Id_empleado);
-		model.addAttribute("empleado", empleado);
-		return "NuevoEmpleado";
+	@PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Empleado actualizarEmpleado(@RequestBody Empleado e) {
+		return service.Guardar(e);
+		
 	}
-	@GetMapping("/eliminarEmpleado/{Id_empleado}")
-	public String delete(Model model, @PathVariable Integer Id_empleado) {
-		service.Borrar(Id_empleado);
-		return "redirect:/listarEmpleado";
+	
+	@DeleteMapping("/{Id_emp}")
+	public Empleado eliminar(@PathVariable ("Id_emp")  Integer Id_emp) {
+		return service.Borrar(Id_emp);
+		
 	}
 
 }

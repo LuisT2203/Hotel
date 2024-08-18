@@ -3,94 +3,68 @@ package com.hotel.demo.controler;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-import com.hotel.demo.interfacesService.IdetalleReservaService;
-import com.hotel.demo.interfacesService.IhabitacionService;
-import com.hotel.demo.interfacesService.IreservaService;
 import com.hotel.demo.modelo.Detalle_Reserva;
-
 import com.hotel.demo.modelo.Habitacion;
-import com.hotel.demo.modelo.Reserva;
 
-import jakarta.transaction.Transactional;
+import com.hotel.demo.service.HabitacionService;
+import com.hotel.demo.service.ReservaService;
+import com.hotel.demo.service.DetalleReservaService;
 
 
-@Controller
-@RequestMapping
+
+
+
+@RestController
+@RequestMapping(value = "detallereserva", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class ControladorDetalleReserva {
 	@Autowired
-	private IdetalleReservaService serviceDR;
+	private DetalleReservaService serviceDR;
 	@Autowired
-	private IreservaService serviceR;
+	private ReservaService serviceR;
 	@Autowired
-	private IhabitacionService ServiceH;
-	@GetMapping("/listarDetalleReserva")
-	public String listar(Model model) {
-		List<Detalle_Reserva>detreservas = serviceDR.listarDetReserva();
-		model.addAttribute("detreservas",detreservas);
-		return "DetalleReserva";
+	private HabitacionService ServiceH;
+	@GetMapping
+	public List<Detalle_Reserva> listarDetalle_Reserva() {
+		return serviceDR.listarDetReserva();
+		
+	}
+	@GetMapping("/{Id_detreserva}")
+	public Detalle_Reserva editar(@PathVariable ("Id_detreserva")  int Id_detreserva) {
+		return serviceDR.listarId(Id_detreserva);
+		
 	}
 	
-	@GetMapping("/newDetalleReserva")
-	public String agregar(Model model) {
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Detalle_Reserva insertarDetalle_Reserva(@RequestBody Detalle_Reserva dr) {
+		return serviceDR.crearReservaConDetalle(dr);
 		
-		List<Habitacion>habitaciones = ServiceH.listar();		
-		List<Reserva>reservas = serviceR.listarReserva();
-		model.addAttribute("habitaciones",habitaciones);
-		model.addAttribute("reservas", reservas);	
-		model.addAttribute("detreserva", new Detalle_Reserva());
+	}
+	@PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Detalle_Reserva actualizarDetalle_Reserva(@RequestBody Detalle_Reserva dr) {
+		return serviceDR.GuardarDR(dr);
 		
-		return "NuevoDetalleReserva";
 	}
 	
-	@PostMapping("/saveDetalleReserva")
-	@Transactional
-	public String guardarDR(@Validated Detalle_Reserva dr, Model model) {
+	@DeleteMapping("/{Id_detreserva}")
+	public Detalle_Reserva eliminar(@PathVariable ("Id_detreserva")  int Id_detreserva) {
+		return serviceDR.BorrarYDisponibilizar(Id_detreserva);
 		
-        serviceDR.crearReservaConDetalle(dr);
-
-        return "redirect:/listarDetalleReserva";
-	}
-
-
-	
-	@GetMapping("/editarDetalleReserva/{Id_detreserva}")
-	public String editar(@PathVariable int Id_detreserva, Model model) {
-		Optional<Detalle_Reserva>detreserva=serviceDR.listarId(Id_detreserva);				
-		List<Reserva>reservas = serviceR.listarReserva();			
-		model.addAttribute("reservas", reservas);
-		model.addAttribute("detreserva", detreserva);
-		return "NuevoDetalleReserva";
-	}
-	@GetMapping("/eliminarDetalleReserva/{Id_detreserva}")
-	public String delete(Model model, @PathVariable int Id_detreserva) {
-		// Obtener el detalle de la reserva a eliminar
-        Optional<Detalle_Reserva> detreserva = serviceDR.listarId(Id_detreserva);
-        if (detreserva.isPresent()) {
-            // Obtener la reserva asociada al detalle
-            Reserva reserva = detreserva.get().getObjReserva();
-
-            // Verificar si la reserva y la habitación asociada existen
-            if (reserva != null && reserva.getObjHabitacion() != null) {
-                // Obtener la habitación y actualizar su estado
-                Habitacion habitacion = reserva.getObjHabitacion();
-                habitacion.disponibilizar(); // Utiliza el método que actualiza el estado
-                ServiceH.Guardar(habitacion); // Guardar la habitación
-            }
-
-            // Eliminar el detalle de la reserva
-            serviceDR.Borrar(Id_detreserva);
-        }
-        return "redirect:/listarDetalleReserva";
 	}
 	
 }

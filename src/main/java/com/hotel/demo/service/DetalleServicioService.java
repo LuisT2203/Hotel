@@ -5,36 +5,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotel.demo.interfaces.IDetalleServicio;
-import com.hotel.demo.interfacesService.IdetalleServicioService;
+
 import com.hotel.demo.modelo.Detalle_Servicio;
+import com.hotel.demo.modelo.Habitacion;
 
 @Service
-public class DetalleServicioService implements IdetalleServicioService {
+public class DetalleServicioService  {
 	@Autowired
 	private IDetalleServicio data;
-	@Override
+	
 	public List<Detalle_Servicio> listarDetServicio() {
 		return (List<Detalle_Servicio>)data.findAll();
 	}
 
-	@Override
-	public Optional<Detalle_Servicio> listarId(int Id_detservicio) {
-		return data.findById(Id_detservicio);
+
+	public Detalle_Servicio listarId(int Id_detservicio) {
+		return data.findById(Id_detservicio).orElse(new Detalle_Servicio());
 	}
 
-	@Override
-	public int Guardar(Detalle_Servicio ds) {
-		int res=0;
-		Detalle_Servicio detalleservicio=data.save(ds);
-		if (!detalleservicio.equals(null)) {
-			res=1;
+	
+	public Detalle_Servicio Guardar(Detalle_Servicio ds) {
+		return data.save(ds);
+		
+	}
+
+	
+	public Detalle_Servicio Borrar(int Id_detservicio) {
+		Detalle_Servicio temp = data.findById(Id_detservicio).orElse(null);
+		if(temp==null) {
+			return new Detalle_Servicio();
+		}else {
+			data.deleteById(Id_detservicio);
+			return temp;
 		}
-		return res;
-	}
-
-	@Override
-	public void Borrar(int Id_detservicio) {
-		data.deleteById(Id_detservicio);
+		
 		
 	}
 

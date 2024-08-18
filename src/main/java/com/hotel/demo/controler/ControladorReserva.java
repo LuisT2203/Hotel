@@ -2,104 +2,78 @@ package com.hotel.demo.controler;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.hotel.demo.service.EmpleadoService;
 
-import com.hotel.demo.interfacesService.IempleadoService;
-import com.hotel.demo.interfacesService.IhabitacionService;
-import com.hotel.demo.interfacesService.IhuespedService;
-import com.hotel.demo.interfacesService.IreservaService;
-import com.hotel.demo.interfacesService.IservicioService;
 
 import com.hotel.demo.modelo.Empleado;
-import com.hotel.demo.modelo.Habitacion;
+import com.hotel.demo.modelo.Reserva;
 import com.hotel.demo.modelo.Huesped;
 import com.hotel.demo.modelo.Reserva;
 import com.hotel.demo.modelo.Servicio;
+import com.hotel.demo.service.ReservaService;
+import com.hotel.demo.service.HuespedService;
+import com.hotel.demo.service.ReservaService;
+import com.hotel.demo.service.ServicioService;
 
 
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping(value = "reserva", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class ControladorReserva {
 	@Autowired
-	private IreservaService service;
+	private ReservaService service;
 	@Autowired
-	private IservicioService serviceS;
+	private ServicioService serviceS;
 	@Autowired
-	private IempleadoService serviceE;
+	private EmpleadoService serviceE;
 	@Autowired
-	private IhabitacionService serviceHa;
+	private ReservaService serviceHa;
 	@Autowired
-	private IhuespedService serviceHu;
+	private HuespedService serviceHu;
 	
 	
-	@GetMapping("/listarReserva")
-	public String listar(Model model) {
-		List<Reserva>reservas = service.listarReserva();
-		model.addAttribute("reservas",reservas);
-		return "Reserva";
-	}
-	@GetMapping("/newReserva")
-	public String agregar(Model model) {
-		List<Habitacion>habitaciones = serviceHa.listar();
-		List<Huesped>huespeds = serviceHu.listarHuesped();
-		List<Empleado>empleados = serviceE.listarEmpleado();		
-		List<Servicio>servicios = serviceS.listarServicio();
-		model.addAttribute("habitaciones",habitaciones);
-		model.addAttribute("huespeds",huespeds);
-		model.addAttribute("empleados",empleados);	
-		model.addAttribute("servicios", servicios);
-		model.addAttribute("reserva",new Reserva());
+	@GetMapping
+	public List<Reserva> listarReserva() {
+		return service.listarReserva();
 		
-		return "NuevaReserva";
 	}
-	@GetMapping("/newReservaRCliente")
-	public String agregarRCliente(Model model) {
-		List<Habitacion>habitaciones = serviceHa.listar();
-		List<Huesped>huespeds = serviceHu.listarHuesped();
-			
-		List<Servicio>servicios = serviceS.listarServicio();
-		model.addAttribute("habitaciones",habitaciones);
-		model.addAttribute("huespeds",huespeds);
-	
-		model.addAttribute("servicios", servicios);
-		model.addAttribute("reserva",new Reserva());
+	@GetMapping("/{nro_reserva}")
+	public Reserva editar(@PathVariable ("nro_reserva")  int nro_reserva) {
+		return service.listarNro(nro_reserva);
 		
-		return "NuevaReservaCliente";
-	}
-	@PostMapping("/saveReserva")
-	public String guardar(@Validated Reserva r, Model model) {   
-		
-	    service.crearReservaConDetalle(r);
-	    return "redirect:/listarReserva";
-	}
-	@GetMapping("/editarReserva/{Nro_reserva}")
-	public String editar(@PathVariable int Nro_reserva, Model model) {
-		Optional<Reserva>reserva=service.listarNro(Nro_reserva);
-		List<Habitacion>habitaciones = serviceHa.listar();
-		List<Huesped>huespeds = serviceHu.listarHuesped();
-		List<Empleado>empleados = serviceE.listarEmpleado();		
-		List<Servicio>servicios = serviceS.listarServicio();
-		model.addAttribute("habitaciones",habitaciones);
-		model.addAttribute("huespeds",huespeds);
-		model.addAttribute("empleados",empleados);	
-		model.addAttribute("servicios", servicios);
-		model.addAttribute("reserva", reserva);
-		return "NuevaReserva";
-	}
-	@GetMapping("/eliminarReserva/{Nro_reserva}")
-	public String delete(Model model, @PathVariable int Nro_reserva) {
-		service.Borrar(Nro_reserva);
-		return "redirect:/listarReserva";
 	}
 	
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Reserva insertarReserva(@RequestBody Reserva r) {
+		return service.crearReservaConDetalle(r);
+		
+	}
+	@PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Reserva actualizarReserva(@RequestBody Reserva r) {
+		return service.crearReservaConDetalle(r);
+		
+	}
+	
+	@DeleteMapping("/{nro_reserva}")
+	public Reserva eliminar(@PathVariable ("nro_reserva")  int nro_reserva) {
+		return service.Borrar(nro_reserva);
+		
+	}
 	
 
 }

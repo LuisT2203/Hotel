@@ -1,49 +1,54 @@
 package com.hotel.demo.controler;
 import java.util.List;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.MediaType;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-
-import com.hotel.demo.interfacesService.IhuespedService;
 import com.hotel.demo.modelo.Huesped;
+import com.hotel.demo.service.HuespedService;
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping(value = "huesped", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class ControladorHuesped {
 	@Autowired
-	private IhuespedService service;
-	@GetMapping("/listarHuesped")
-	public String listar(Model model) {
-		List<Huesped>huespeds = service.listarHuesped();
-		model.addAttribute("huespeds",huespeds);
-		return "Huesped";
+	HuespedService service;
+	
+	@GetMapping
+	public List<Huesped> listarHuespedes() {
+		return service.listarHuesped();
+		
 	}
-	@GetMapping("/newHuesped")
-	public String agregar(Model model) {
-		model.addAttribute("huesped",new Huesped());
-		return "NuevoHuesped";
+	@GetMapping("/{Id_huesped}")
+	public Huesped editar(@PathVariable ("Id_huesped")  int Id_huesped) {
+		return service.listarId(Id_huesped);
+		
 	}
-	@PostMapping("/saveHuesped")
-	public String guardar(@Validated Huesped h, Model model) {
-		service.Guardar(h);
-		return "redirect:/listarHuesped";
+	
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Huesped insertarHuesped(@RequestBody Huesped h) {
+		return service.Guardar(h);
+		
 	}
-	@GetMapping("/editarHuesped/{Id_huesped}")
-	public String editar(@PathVariable int Id_huesped, Model model) {
-		Optional<Huesped>huesped=service.listarId(Id_huesped);
-		model.addAttribute("huesped", huesped);
-		return "NuevoHuesped";
+	@PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Huesped actualizarHuesped(@RequestBody Huesped h) {
+		return service.Guardar(h);
+		
 	}
-	@GetMapping("/eliminarHuesped/{Id_huesped}")
-	public String delete(Model model, @PathVariable int Id_huesped) {
-		service.Borrar(Id_huesped);
-		return "redirect:/listarHuesped";
+	
+	@DeleteMapping("/{Id_huesped}")
+	public Huesped eliminar(@PathVariable ("Id_huesped")  int Id_huesped) {
+		return service.Borrar(Id_huesped);
+		
 	}
 }

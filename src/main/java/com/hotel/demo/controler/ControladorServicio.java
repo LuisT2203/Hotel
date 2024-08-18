@@ -2,47 +2,55 @@ package com.hotel.demo.controler;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.hotel.demo.interfacesService.IservicioService;
 import com.hotel.demo.modelo.Servicio;
-@Controller
-@RequestMapping
+
+import com.hotel.demo.service.ServicioService;
+@RestController
+@RequestMapping(value = "servicio", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class ControladorServicio {
 	@Autowired
-	private IservicioService service;
-	@GetMapping("/listarServicio")
-	public String listar(Model model) {
-		List<Servicio>servicios = service.listarServicio();
-		model.addAttribute("servicios", servicios);
-		return "Servicio";
+	private ServicioService service;
+	
+	@GetMapping
+	public List<Servicio> listarServicioes() {
+		return service.listarServicio();
+		
 	}
-	@GetMapping("/newServicio")
-	public String agregar(Model model) {
-		model.addAttribute("servicio", new Servicio());
-		return "NuevoServicio";
+	@GetMapping("/{Id_servicio}")
+	public Servicio editar(@PathVariable ("Id_servicio")  int Id_servicio) {
+		return service.listarId(Id_servicio);
+		
 	}
-	@PostMapping("/saveServicio")
-	public String guardar(@Validated Servicio s, Model model) {
-		service.Guardar(s);
-		return "redirect:/listarServicio";
+	
+	@PostMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Servicio insertarServicio(@RequestBody Servicio s) {
+		return service.Guardar(s);
+		
 	}
-	@GetMapping("/editarServicio/{Id_servicio}")
-	public String editar(@PathVariable int Id_servicio, Model model) {
-		Optional<Servicio>servicio=service.listarId(Id_servicio);
-		model.addAttribute("servicio", servicio);
-		return "NuevoServicio";
+	@PutMapping(consumes= MediaType.APPLICATION_JSON_VALUE)
+	public Servicio actualizarServicio(@RequestBody Servicio s ) {
+		return service.Guardar(s);
+		
 	}
-	@GetMapping("/eliminarServicio/{Id_servicio}")
-	public String delete(Model model, @PathVariable int Id_servicio) {
-		service.Borrar(Id_servicio);
-		return "redirect:/listarServicio";
-
+	
+	@DeleteMapping("/{Id_servicio}")
+	public Servicio eliminar(@PathVariable ("Id_servicio")  int Id_servicio) {
+		return service.Borrar(Id_servicio);
+		
 	}
 }

@@ -11,22 +11,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hotel.demo.interfacesService.IhabitacionService;
-import com.hotel.demo.interfacesService.IreservaService;
-import com.hotel.demo.interfacesService.IservicioService;
+
+
 import com.hotel.demo.modelo.Habitacion;
 import com.hotel.demo.modelo.Reserva;
 import com.hotel.demo.modelo.Servicio;
+import com.hotel.demo.service.HabitacionService;
+import com.hotel.demo.service.ReservaService;
+import com.hotel.demo.service.ServicioService;
 
 public class ReporteControler {
 	@Controller
 	public class ReservaPagoController {
 		@Autowired
-		private IreservaService serviceR;
+		private ReservaService serviceR;
 		@Autowired
-		private IservicioService serviceS;
+		private ServicioService serviceS;
 		@Autowired
-		private IhabitacionService serviceHa;
+		private HabitacionService serviceHa;
 
 	    @GetMapping("/reserva_pago")
 	    public String mostrarReservaPago(Model model) {

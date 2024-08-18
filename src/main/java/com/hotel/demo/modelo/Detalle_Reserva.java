@@ -1,5 +1,6 @@
 package com.hotel.demo.modelo;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,33 +17,35 @@ public class Detalle_Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_detareser;
-	private Date fecha_ingreso;
+	private LocalDate fecha_ingreso;
 	private String hora_entrada;
 	private String hora_salida;
-	private Date fecha_salida;
-	private int nro_reserva;
-	private int nro_habi;
+	private LocalDate fecha_salida;
+	
+	@ManyToOne
+	@JoinColumn(name="nro_habi", referencedColumnName="nro_habi")
+	private Habitacion habitacion;
+	@ManyToOne 
+	  @JoinColumn(name="nro_reserva", referencedColumnName="nro_reserva")
+	  private Reserva reserva;
 	
 	public Detalle_Reserva() {
 		super();
 	}
+	
 
 
-	public Detalle_Reserva(int id_detareser, Date fecha_ingreso, String hora_entrada, String hora_salida,
-			Date fecha_salida, int nro_reserva, int nro_habi) {
+	public Detalle_Reserva(int id_detareser, LocalDate fecha_ingreso, String hora_entrada, String hora_salida,
+			LocalDate fecha_salida, Habitacion habitacion, Reserva reserva) {
 		super();
 		this.id_detareser = id_detareser;
 		this.fecha_ingreso = fecha_ingreso;
 		this.hora_entrada = hora_entrada;
 		this.hora_salida = hora_salida;
 		this.fecha_salida = fecha_salida;
-		this.nro_reserva = nro_reserva;
-		this.nro_habi = nro_habi;
+		this.habitacion = habitacion;
+		this.reserva = reserva;
 	}
-
-
-
-
 
 
 
@@ -58,11 +61,11 @@ public class Detalle_Reserva {
 
 
 
-	public Date getFecha_ingreso() {
+	public LocalDate getFecha_ingreso() {
 		return fecha_ingreso;
 	}
 
-	public void setFecha_ingreso(Date fecha_ingreso) {
+	public void setFecha_ingreso(LocalDate fecha_ingreso) {
 		this.fecha_ingreso = fecha_ingreso;
 	}
 
@@ -82,71 +85,39 @@ public class Detalle_Reserva {
 		this.hora_salida = hora_salida;
 	}
 
-	public Date getFecha_salida() {
+	public LocalDate getFecha_salida() {
 		return fecha_salida;
 	}
 
-	public void setFecha_salida(Date fecha_salida) {
+	public void setFecha_salida(LocalDate fecha_salida) {
 		this.fecha_salida = fecha_salida;
 	}
 
-	public int getNro_reserva() {
-		return nro_reserva;
+
+
+	public Habitacion getHabitacion() {
+		return habitacion;
 	}
 
-	public void setNro_reserva(int nro_reserva) {
-		this.nro_reserva = nro_reserva;
+
+
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
+
+
+
+	public Reserva getReserva() {
+		return reserva;
+	}
+
+
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
 	
 
-	
-	@ManyToOne 
-	  @JoinColumn(name="nro_reserva", insertable=false,updatable=false)
-	  private Reserva objReserva;
-
-	public Reserva getObjReserva() {
-		return objReserva;
-	}
-
-	public void setObjReserva(Reserva objReserva) {
-		this.objReserva = objReserva;
-	}
-	@ManyToOne
-	@JoinColumn(name="nro_habi", insertable=false,updatable=false)
-	private Habitacion objHabitacion;
-
-	public int getNro_habi() {
-		return nro_habi;
-	}
-
-
-
-
-
-
-
-	public void setNro_habi(int nro_habi) {
-		this.nro_habi = nro_habi;
-	}
-
-
-
-
-
-
-
-	public Habitacion getObjHabitacion() {
-		return objHabitacion;
-	}
-
-
-
-
-
-
-
-	public void setObjHabitacion(Habitacion objHabitacion) {
-		this.objHabitacion = objHabitacion;
-	}
 	
 }

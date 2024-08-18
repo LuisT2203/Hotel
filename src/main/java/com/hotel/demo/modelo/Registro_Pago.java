@@ -14,11 +14,13 @@ public class Registro_Pago {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id_pago;
-	private int nro_reserva;
 	private double precio;
 	private int cant_dias;
 	private int precio_habi;
 	private double monto;
+	@ManyToOne
+	  @JoinColumn(name="nro_reserva", referencedColumnName="nro_reserva")
+	  private Reserva reserva;
 
 	
 	public Registro_Pago() {
@@ -27,31 +29,38 @@ public class Registro_Pago {
 	
 	
 	
-	public Registro_Pago(int id_pago, int nro_reserva, int precio, int cant_dias, int precio_habi, double monto) {
-		super();
-		this.id_pago = id_pago;
-		this.nro_reserva = nro_reserva;
-		this.precio = precio;
-		this.cant_dias = cant_dias;
-		this.precio_habi = precio_habi;
-		this.monto = monto;
+	
+	
+	public Reserva getReserva() {
+		return reserva;
 	}
 
 
 
-	@ManyToOne
-	  @JoinColumn(name="nro_reserva", insertable=false,updatable=false)
-	  private Reserva objReserva;
 
-	  @ManyToOne
-		@JoinColumn(name="id_servicio", insertable=false,updatable=false)
-		private Servicio objServicio;
-	  
-	  @ManyToOne
-		@JoinColumn(name="nro_habi", insertable=false,updatable=false)
-		private Habitacion objHabitacion;
-	
-	
+
+	public void setReserva(Reserva reserva) {
+		this.reserva = reserva;
+	}
+
+
+
+
+
+	public Registro_Pago(int id_pago, double precio, int cant_dias, int precio_habi, double monto, Reserva reserva) {
+		super();
+		this.id_pago = id_pago;
+		this.precio = precio;
+		this.cant_dias = cant_dias;
+		this.precio_habi = precio_habi;
+		this.monto = monto;
+		this.reserva = reserva;
+	}
+
+
+
+
+
 	public int getId_pago() {
 		return id_pago;
 	}
@@ -91,38 +100,13 @@ public class Registro_Pago {
 		return cant_dias;
 	}
 
-
-
 	public void setCant_dias(int cant_dias) {
 		this.cant_dias = cant_dias;
 	}
 
 
 
-	public int getNro_reserva() {
-		return nro_reserva;
-	}
-	public void setNro_reserva(int nro_reserva) {
-		this.nro_reserva = nro_reserva;
-	}
-	public Reserva getObjReserva() {
-		return objReserva;
-	}
-	public void setObjReserva(Reserva objReserva) {
-		this.objReserva = objReserva;
-	}
-	public Servicio getObjServicio() {
-		return objServicio;
-	}
-	public void setObjServicio(Servicio objServicio) {
-		this.objServicio = objServicio;
-	}
-	public Habitacion getObjHabitacion() {
-		return objHabitacion;
-	}
-	public void setObjHabitacion(Habitacion objHabitacion) {
-		this.objHabitacion = objHabitacion;
-	}
+	
 	
 
 	

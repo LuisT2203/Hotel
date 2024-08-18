@@ -6,12 +6,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.hotel.demo.modelo.Empleado;
 import com.hotel.demo.interfaces.IReserva;
-import com.hotel.demo.interfacesService.IdetalleServicioService;
 
-import com.hotel.demo.interfacesService.IreservaService;
-import com.hotel.demo.interfacesService.IservicioService;
+
+
 import com.hotel.demo.modelo.Detalle_Servicio;
 
 import com.hotel.demo.modelo.Reserva;
@@ -19,46 +18,45 @@ import com.hotel.demo.modelo.Servicio;
 
 import jakarta.transaction.Transactional;
 @Service
-public class ReservaService implements IreservaService {
+public class ReservaService{
 	@Autowired
 	private IReserva data;
 	
 	@Autowired
-	private IservicioService serviceS;
+	private EmpleadoService serviceE;
+	
 	@Autowired
-	private IdetalleServicioService serviceDS;
-	@Override
+	private ServicioService serviceS;
+	@Autowired
+	private DetalleServicioService serviceDS;
+	
 	public List<Reserva> listarReserva() {
 		return (List<Reserva>)data.findAll();
 	}
 
-	@Override
-	public Optional<Reserva> listarNro(int nro_reserva) {
-		return data.findById(nro_reserva);
+	
+	public Reserva listarNro(int nro_reserva) {
+		return data.findById(nro_reserva).orElse(null);
 	}
 
-	@Override
-	public int Guardar(Reserva r) {
-		// TODO Auto-generated method stub
-		int res=0;
-		Reserva reserva=data.save(r);
-		if (!reserva.equals(null)) {
-			res=1;
+	
+
+	
+	public Reserva Borrar(int nro_reserva) {
+		Reserva temp = data.findById(nro_reserva).orElse(null);
+		if(temp==null) {
+			return new Reserva();
+		}else {
+			data.deleteById(nro_reserva);
+			return temp;
 		}
-		return res;
 	}
 
-	@Override
-	public void Borrar(int nro_reserva) {
-		// TODO Auto-generated method stub
-		data.deleteById(nro_reserva);
-	}
-
-	@Override
+	
 	public Reserva GuardarR(Reserva r) {
 	    // Establecer un valor predeterminado si id_emp es null
-	    if (r.getId_servicio() == 1) {
-	        r.setId_emp(1);
+	    if (r.getServicio().getId_servicio() == 1) {
+	        r.getEmpleado().setId_emp(1);
 	    }
 
 	    Reserva reserva = data.save(r);
@@ -68,7 +66,8 @@ public class ReservaService implements IreservaService {
 	 @Transactional
 	    public Reserva crearReservaConDetalle(Reserva reserva) {
 	        // Obtener el servicio por ID
-	        Servicio servicio = serviceS.listarId(reserva.getId_servicio()).orElse(null);
+	        Servicio servicio = serviceS.listarId(reserva.getServicio().getId_servicio());
+	        Empleado empleado = serviceE.listarId(reserva.getEmpleado().getId_emp());
 
 	        if (servicio != null) {
 	        	
@@ -76,16 +75,17 @@ public class ReservaService implements IreservaService {
 	            reserva = GuardarR(reserva);
 
 	            // Crear y configurar el objeto Detalle_Servicio
+	            
 	            Detalle_Servicio detalleServicio = new Detalle_Servicio();
-	            detalleServicio.setObjReserva(reserva);
-	            detalleServicio.setObjServicio(servicio);
+	            detalleServicio.setReserva(reserva);
+	            detalleServicio.setServicio(servicio);
+	            detalleServicio.setEmpleado(empleado);
 
-	            // Configurar otros campos
-	            detalleServicio.setId_servicio(reserva.getId_servicio());
+	            
 	            detalleServicio.setHora_serv(new Time(Calendar.getInstance().getTimeInMillis()));
 	            detalleServicio.setEstado_serv("No realizado"); // Estado por defecto
-	            detalleServicio.setId_emp(reserva.getId_emp());
-	            detalleServicio.setNro_reserva(reserva.getNro_reserva());
+	            
+	            
 
 	            // Guardar el detalle del servicio
 	            serviceDS.Guardar(detalleServicio);
@@ -100,7 +100,7 @@ public class ReservaService implements IreservaService {
 		    // Otros métodos
 
 		    public double obtenerPrecioServicioPorId(int idServicio) {
-		        Optional<Servicio> servicioOptional = serviceS.listarId(idServicio);
+		        Optional<Servicio> servicioOptional = serviceS.listarId1(idServicio);
 		        return servicioOptional.map(Servicio::getPrecio).orElse(0.0); // Cambiado a 0.0 para que sea un valor double
 		    }
 

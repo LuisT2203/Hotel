@@ -78,19 +78,19 @@ public class Habitacion {
 	public void disponibilizar() {
 		setEstado("Disponible") ;
 	}
-	@ManyToOne 
-	  @JoinColumn(name="nro_reserva", insertable=false,updatable=false)
-	  private Reserva objReserva;
-
-	public Reserva getObjReserva() {
-		return objReserva;
-	}
-
-
-
-	public void setObjReserva(Reserva objReserva) {
-		this.objReserva = objReserva;
-	}
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="nro_reserva", insertable=false,updatable=false) private
+	 * Reserva objReserva;
+	 * 
+	 * public Reserva getObjReserva() { return objReserva; }
+	 * 
+	 * 
+	 * 
+	 * public void setObjReserva(Reserva objReserva) { this.objReserva = objReserva;
+	 * }
+	 */
 	
 	
 }
