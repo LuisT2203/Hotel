@@ -15,19 +15,52 @@ public class Empleado {
 	private String apellido_emp;
 	private String sexo_emp;
 	private String cargo_emp;
+	private String correo;    // Campo para el correo
+    private String clave;     // Campo para la contraseña
 	
 	public Empleado() {
 		super();
 	}
 
-	public Empleado(Integer id_emp, String nombre_emp, String apellido_emp, String sexo_emp, String cargo_emp) {
+	
+
+	public Empleado(Integer id_emp, String nombre_emp, String apellido_emp, String sexo_emp, String cargo_emp,
+			String correo, String clave) {
 		super();
 		this.id_emp = id_emp;
 		this.nombre_emp = nombre_emp;
 		this.apellido_emp = apellido_emp;
 		this.sexo_emp = sexo_emp;
 		this.cargo_emp = cargo_emp;
+		this.correo = correo;
+		this.clave = clave;
 	}
+
+
+
+	public String getCorreo() {
+		return correo;
+	}
+
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+
+
+	public String getClave() {
+		return clave;
+	}
+
+
+
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+
+
 
 	public Integer getId_emp() {
 		return id_emp;

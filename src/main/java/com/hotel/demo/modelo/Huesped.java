@@ -15,24 +15,33 @@ public class Huesped {
 	private String nombre;
 	private String apellido;
 	private String direccion;
-	private String email;	
+	private String correo;	
 	private String sexo;
 	private int edad;
+	private String clave;
 	
 	public Huesped() {
 		super();
 	}
 
-	public Huesped(int id_huesped, String nombre, String apellido, String direccion, String email, String sexo, int edad) {
+	
+	
+
+	public Huesped(int id_huesped, String nombre, String apellido, String direccion, String correo, String sexo,
+			int edad, String clave) {
 		super();
 		this.id_huesped = id_huesped;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
-		this.email = email;
+		this.correo = correo;
 		this.sexo = sexo;
 		this.edad = edad;
+		this.clave = clave;
 	}
+
+
+
 
 	public int getId_huesped() {
 		return id_huesped;
@@ -66,13 +75,35 @@ public class Huesped {
 		this.direccion = direccion;
 	}
 
-	public String getEmail() {
-		return email;
+	
+
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+
+
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
+
+
+
+
+	public String getClave() {
+		return clave;
+	}
+
+
+
+
+	public void setClave(String clave) {
+		this.clave = clave;
+	}
+
+
+
 
 	public String getSexo() {
 		return sexo;

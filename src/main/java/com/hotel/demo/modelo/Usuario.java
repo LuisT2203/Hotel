@@ -11,17 +11,27 @@ import jakarta.persistence.Table;
 @Table(name = "usuario")
 public class Usuario {
 	@Id
+	@Column(name = "id_usu", length=45)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(unique = true)
-	private String correo;
-	
-	@Column
+	private String usuario;
+	private String tipo;
 	private String clave;
 	
-	@Column
-	private String tipo;
+	
+	
+
+	public Usuario() {
+		super();
+	}
+
+	public Usuario(Integer id, String usuario,String tipo, String clave ) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.tipo = tipo;
+		this.clave = clave;
+	}
 
 	public Integer getId() {
 		return id;
@@ -31,12 +41,12 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getUsuario() {
+		return usuario;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 	public String getClave() {
@@ -60,8 +70,8 @@ public class Usuario {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Usuario [id=");
 		builder.append(id);
-		builder.append(", correo=");
-		builder.append(correo);
+		builder.append(", usuario=");
+		builder.append(usuario);
 		builder.append(", clave=");
 		builder.append(clave);
 		builder.append(", tipo=");

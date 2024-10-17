@@ -2,6 +2,7 @@ package com.hotel.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -12,6 +13,8 @@ import com.hotel.demo.modelo.Huesped;
 public class HuespedService{
 	@Autowired
 	private IHuesped data;
+	 @Autowired
+	  private PasswordEncoder passwordEncoder;  // Inyección del encoder
 	
 	public List<Huesped> listarHuesped() {
 		return (List<Huesped>)data.findAll();
@@ -25,8 +28,10 @@ public class HuespedService{
 
 	
 	public Huesped Guardar(Huesped h) {
-		return data.save(h);
-	}
+        // Encriptamos la contraseña antes de guardar
+        h.setClave(passwordEncoder.encode(h.getClave()));
+        return data.save(h);
+    }
 
 	
 	public Huesped Borrar(int Id_huesped) {

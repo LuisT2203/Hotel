@@ -35,10 +35,7 @@ import com.hotel.demo.service.DetalleReservaService;
 public class ControladorDetalleReserva {
 	@Autowired
 	private DetalleReservaService serviceDR;
-	@Autowired
-	private ReservaService serviceR;
-	@Autowired
-	private HabitacionService ServiceH;
+	
 	@GetMapping
 	public List<Detalle_Reserva> listarDetalle_Reserva() {
 		return serviceDR.listarDetReserva();

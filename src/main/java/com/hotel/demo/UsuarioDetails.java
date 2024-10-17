@@ -6,7 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.hotel.demo.modelo.Usuario;
-
+@SuppressWarnings("serial")
 public class UsuarioDetails implements UserDetails {
 	
 	private Usuario usuario;
@@ -30,7 +30,7 @@ public class UsuarioDetails implements UserDetails {
 	@Override
 	public String getUsername() {
 		
-		return usuario.getCorreo();
+		return usuario.getUsuario();
 	}
 
 	@Override

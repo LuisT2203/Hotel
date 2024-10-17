@@ -65,7 +65,7 @@ public class RegistroPagoService {
 
 	        // Actualizar el estado de la reserva
 	        reserva.setEstado_reserva("Pagado"); // Establecer el estado como "Pagado"
-	        serviceR.GuardarR(reserva);// Guardar la reserva actualizada
+	        serviceR.guardarReserva(reserva);// Guardar la reserva actualizada
 
 	        return registroPago;
 	    } else {

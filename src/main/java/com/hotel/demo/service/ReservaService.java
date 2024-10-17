@@ -1,8 +1,12 @@
 package com.hotel.demo.service;
 import java.sql.Time;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,50 +55,98 @@ public class ReservaService{
 			return temp;
 		}
 	}
-
-	
-	public Reserva GuardarR(Reserva r) {
-	    // Establecer un valor predeterminado si id_emp es null
-	    if (r.getServicio().getId_servicio() == 1) {
-	        r.getEmpleado().setId_emp(1);
-	    }
-
-	    Reserva reserva = data.save(r);
-	    return reserva;
+	public Reserva guardarReserva(Reserva reserva) {
+	    // Solo guarda la reserva sin detalles
+	    return data.save(reserva);
 	}
 
-	 @Transactional
-	    public Reserva crearReservaConDetalle(Reserva reserva) {
-	        // Obtener el servicio por ID
-	        Servicio servicio = serviceS.listarId(reserva.getServicio().getId_servicio());
-	        Empleado empleado = serviceE.listarId(reserva.getEmpleado().getId_emp());
+	@Transactional
+	public Reserva actualizarReservaConDetalle(Reserva reserva) {
+		// Guardar la reserva
+	    reserva = guardarReserva(reserva);
 
-	        if (servicio != null) {
-	        	
-	            // Guardar la reserva
-	            reserva = GuardarR(reserva);
+	    // Obtener todos los detalles de servicio existentes para la reserva
+	    List<Detalle_Servicio> detallesExistentes = (List<Detalle_Servicio>) listarNro(reserva.getNro_reserva());
 
-	            // Crear y configurar el objeto Detalle_Servicio
-	            
-	            Detalle_Servicio detalleServicio = new Detalle_Servicio();
-	            detalleServicio.setReserva(reserva);
-	            detalleServicio.setServicio(servicio);
-	            detalleServicio.setEmpleado(empleado);
+	    // Convertir la lista de detalles existentes a un conjunto de IDs de servicios para fácil verificación
+	    Set<Integer> serviciosExistentesIds = detallesExistentes.stream()
+	        .map(detalle -> detalle.getServicio().getId_servicio())
+	        .collect(Collectors.toSet());
 
-	            
-	            detalleServicio.setHora_serv(new Time(Calendar.getInstance().getTimeInMillis()));
-	            detalleServicio.setEstado_serv("No realizado"); // Estado por defecto
-	            
-	            
+	    // Iterar sobre los servicios de la reserva
+	    for (Servicio servicio : reserva.getServicios()) {
+	        Servicio servicioExistente = serviceS.listarId(servicio.getId_servicio());
 
-	            // Guardar el detalle del servicio
-	            serviceDS.Guardar(detalleServicio);
+	        if (servicioExistente != null) {
+	            // Verificar si el servicio ya está en los detalles existentes
+	            if (!serviciosExistentesIds.contains(servicio.getId_servicio())) {
+	                // Si el servicio no existe, procesar el detalle del servicio
+	                for (Empleado empleado : servicio.getEmpleados()) {
+	                    Empleado empleadoExistente = serviceE.listarId(empleado.getId_emp());
 
-	            return reserva;
+	                    if (empleadoExistente != null) {
+	                        // Crear y configurar el objeto Detalle_Servicio
+	                        Detalle_Servicio detalleServicio = new Detalle_Servicio();
+	                        detalleServicio.setReserva(reserva);  // Asociar la reserva guardada
+	                        detalleServicio.setServicio(servicioExistente); // Asociar el servicio existente
+	                        detalleServicio.setEmpleado(empleadoExistente); // Asociar el empleado existente
+	                        detalleServicio.setHora_serv(new Time(Calendar.getInstance().getTimeInMillis()));
+	                        detalleServicio.setEstado_serv("No realizado"); // Estado por defecto
+
+	                        // Guardar el detalle del servicio
+	                        serviceDS.Guardar(detalleServicio);
+	                    } else {
+	                        throw new RuntimeException("El empleado asociado al servicio no existe");
+	                    }
+	                }
+	            } else {
+	                // El servicio ya está asociado a la reserva
+	                System.out.println("El servicio ya está asociado a esta reserva y no se puede duplicar: " + servicio.getId_servicio());
+	            }
 	        } else {
-	            throw new RuntimeException("El Servicio asociado a la reserva no existe");
+	            throw new RuntimeException("El servicio asociado a la reserva no existe");
 	        }
 	    }
+
+	    return reserva;
+	}
+	
+	@Transactional
+	public Reserva crearReservaConDetalle(Reserva reserva) {
+	    // Guardar la reserva
+	    reserva = guardarReserva(reserva);
+
+	    // Iterar sobre los servicios de la reserva
+	    for (Servicio servicio : reserva.getServicios()) {
+	        Servicio servicioExistente = serviceS.listarId(servicio.getId_servicio());
+
+	        if (servicioExistente != null) {
+	            // Iterar sobre los empleados asociados a este servicio
+	            for (Empleado empleado : servicio.getEmpleados()) {
+	                Empleado empleadoExistente = serviceE.listarId(empleado.getId_emp());
+
+	                if (empleadoExistente != null) {
+	                    // Crear y configurar el objeto Detalle_Servicio
+	                    Detalle_Servicio detalleServicio = new Detalle_Servicio();
+	                    detalleServicio.setReserva(reserva);  // Asociar la reserva guardada
+	                    detalleServicio.setServicio(servicioExistente); // Asociar el servicio existente
+	                    detalleServicio.setEmpleado(empleadoExistente); // Asociar el empleado existente
+	                    detalleServicio.setHora_serv(new Time(Calendar.getInstance().getTimeInMillis()));
+	                    detalleServicio.setEstado_serv("No realizado"); // Estado por defecto
+
+	                    // Guardar el detalle del servicio
+	                    serviceDS.Guardar(detalleServicio);
+	                } else {
+	                    throw new RuntimeException("El empleado asociado al servicio no existe");
+	                }
+	            }
+	        } else {
+	            throw new RuntimeException("El servicio asociado a la reserva no existe");
+	        }
+	    }
+
+	    return reserva;
+	}
 	 
 
 		    // Otros métodos

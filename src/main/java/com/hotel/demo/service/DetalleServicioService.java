@@ -14,6 +14,8 @@ public class DetalleServicioService  {
 	@Autowired
 	private IDetalleServicio data;
 	
+	
+	
 	public List<Detalle_Servicio> listarDetServicio() {
 		return (List<Detalle_Servicio>)data.findAll();
 	}
