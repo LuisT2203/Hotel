@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0440ec18-7c2d-47d6-b8b7-dfd5d8b4e6de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/MapperConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/HuespedDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/HuespedDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/Registro_PagoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/Registro_PagoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/ReservaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/ReservaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/ServicioDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/DTOS/ServicioDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorHuesped.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorHuesped.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorRegistroPago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorRegistroPago.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorReserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorReserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/controler/ControladorServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Detalle_Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Detalle_Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Detalle_Servicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Detalle_Servicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Empleado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Habitacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Huesped.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Huesped.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Registro_Pago.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Registro_Pago.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Reserva.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Reserva.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Servicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Servicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/HuespedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/HuespedService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/RegistroPagoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/RegistroPagoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/ReservaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/ReservaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/ServicioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/hotel/demo/service/ServicioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/Detalle_ReservaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/Detalle_ReservaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/Detalle_ServicioDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/Detalle_ServicioDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/EmpleadoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/EmpleadoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/HabitacionDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/HabitacionDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/HuespedDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/HuespedDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/Registro_PagoDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/Registro_PagoDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/ReservaDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/ReservaDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/ServicioDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/DTOS/ServicioDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/ReservacionHotelApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/ReservacionHotelApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/UsuarioDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/UsuarioDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/UsuarioDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/UsuarioDetailsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorDetalleReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorDetalleReserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorDetalleServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorDetalleServicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorEmpleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorEmpleado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorHabitacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorHabitacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorHuesped.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorHuesped.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorRegistroPago.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorRegistroPago.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorReserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ControladorServicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/MainController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ReporteControler$ReservaPagoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ReporteControler$ReservaPagoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ReporteControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/ReporteControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/controler/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IDetalleReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IDetalleReserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IDetalleServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IDetalleServicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IEmpleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IEmpleado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IHabitacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IHabitacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IHuesped.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IHuesped.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IRegistroPago.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IRegistroPago.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IReserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IReserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IServicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/IServicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/UsuarioRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfaces/UsuarioRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfacesService/IregistroPagoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/interfacesService/IregistroPagoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Detalle_Reserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Detalle_Reserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Detalle_Servicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Detalle_Servicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Empleado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Empleado.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Habitacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Habitacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Huesped.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Huesped.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Registro_Pago.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Registro_Pago.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Reserva.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Reserva.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Servicio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Servicio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/modelo/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/DetalleReservaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/DetalleReservaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/DetalleServicioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/DetalleServicioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/EmpleadoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/EmpleadoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/HabitacionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/HabitacionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/HuespedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/HuespedService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/RegistroPagoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/RegistroPagoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/ReservaService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/ReservaService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/ServicioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/ServicioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/UsuarioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/service/UsuarioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/ExceptionResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/ExceptionResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/MensajeResponse$MensajeResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/MensajeResponse$MensajeResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/MensajeResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/MensajeResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/ModeloNotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/ModeloNotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/ValidationHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/hotel/demo/utils/ValidationHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/hotel/demo/ReservacionHotelApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/hotel/demo/ReservacionHotelApplicationTests.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2nYEdAV3QpCuc8f5q3bhkPC5FEx" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "settings.editor.selected.configurable": "advanced.settings"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ReservacionHotelApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.hotel.demo.ReservacionHotelApplication" />
+      <module name="Reservacion-Hotel" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.hotel.demo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ReservacionHotelApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0440ec18-7c2d-47d6-b8b7-dfd5d8b4e6de" name="Changes" comment="" />
+      <created>1729141694181</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729141694181</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hotel/demo/modelo/Habitacion.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
