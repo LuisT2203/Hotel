@@ -81,9 +81,10 @@ public class ReservaService{
 	            // Verificar si el servicio ya está en los detalles existentes
 	            if (!serviciosExistentesIds.contains(servicio.getId_servicio())) {
 	                // Si el servicio no existe, procesar el detalle del servicio
-	                for (Empleado empleado : servicio.getEmpleados()) {
-	                    Empleado empleadoExistente = serviceE.listarId(empleado.getId_emp());
+	            	 Empleado empleado = servicio.getEmpleado(); // Cambiado a un solo empleado
 
+	                 if (empleado != null) {
+	                     Empleado empleadoExistente = serviceE.listarId(empleado.getId_emp());
 	                    if (empleadoExistente != null) {
 	                        // Crear y configurar el objeto Detalle_Servicio
 	                        Detalle_Servicio detalleServicio = new Detalle_Servicio();
@@ -122,8 +123,10 @@ public class ReservaService{
 
 	        if (servicioExistente != null) {
 	            // Iterar sobre los empleados asociados a este servicio
-	            for (Empleado empleado : servicio.getEmpleados()) {
-	                Empleado empleadoExistente = serviceE.listarId(empleado.getId_emp());
+	        	 Empleado empleado = servicio.getEmpleado(); // Cambiado a un solo empleado
+
+	             if (empleado != null) {
+	                 Empleado empleadoExistente = serviceE.listarId(empleado.getId_emp());
 
 	                if (empleadoExistente != null) {
 	                    // Crear y configurar el objeto Detalle_Servicio

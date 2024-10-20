@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
@@ -21,36 +22,35 @@ public class Servicio {
 	private double precio;
 	
 	// Relación con Empleado
-    @ManyToMany // o @OneToMany, dependiendo de tu diseño
-    @JoinTable(
-        name = "servicio_empleado",
-        joinColumns = @JoinColumn(name = "id_servicio"),
-        inverseJoinColumns = @JoinColumn(name = "id_emp")
-    )
-    private List<Empleado> empleados;
+	@ManyToOne
+	@JoinColumn(name="id_emp", referencedColumnName="id_emp")
+    private Empleado empleado;
 
-    // Getters y setters
-    public List<Empleado> getEmpleados() {
-        return empleados;
-    }
-
-    public void setEmpleados(List<Empleado> empleados) {
-        this.empleados = empleados;
-    }
-	
+   
 	
 
-	public Servicio(int id_servicio, String tipo, String nombre, double precio, List<Empleado> empleados) {
+	
+
+	public Servicio(int id_servicio, String tipo, String nombre, double precio, Empleado empleado) {
 		super();
 		this.id_servicio = id_servicio;
 		this.tipo = tipo;
 		this.nombre = nombre;
 		this.precio = precio;
-		this.empleados = empleados;
+		this.empleado = empleado;
 	}
 
 	public Servicio() {
 		super();
+	}
+	
+
+	public Empleado getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
 
 	public int getId_servicio() {

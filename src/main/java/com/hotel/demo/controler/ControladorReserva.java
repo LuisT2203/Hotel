@@ -37,14 +37,8 @@ import com.hotel.demo.service.ServicioService;
 public class ControladorReserva {
 	@Autowired
 	private ReservaService service;
-	@Autowired
-	private ServicioService serviceS;
-	@Autowired
-	private EmpleadoService serviceE;
-	@Autowired
-	private ReservaService serviceHa;
-	@Autowired
-	private HuespedService serviceHu;
+	
+	
 	
 	
 	@GetMapping

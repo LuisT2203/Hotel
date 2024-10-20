@@ -152,39 +152,81 @@ public class UsuarioController {
         }
     }
 		
-		@PostMapping(path="/refresh")
-		public ResponseEntity<?> loginUsuario(@RequestBody Map<String, String> request){
-			String refreshToken = request.get("refreshToken");
-			
-			try {
-			
-					String username = jwtUtilService.extractUsername(refreshToken);
-					UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-					Usuario usuario = usuRepo.findByUsuario(username);
-					
-					if(jwtUtilService.validateToken(refreshToken, userDetails)) {
-						String newJwt = jwtUtilService.generateToken(userDetails, usuario.getTipo());
-						String newRefreshToken = jwtUtilService.generateRefreshToken(userDetails, usuario.getTipo());
-						
-						
-						AuthResponseDto authResponseDto = new AuthResponseDto();
-						authResponseDto.setToken(newJwt);
-						authResponseDto.setRefreshToken(newRefreshToken);
-						
-						return new ResponseEntity<>(authResponseDto, HttpStatus.OK);
-					}else {
-						return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Refresh Token");
-					}
-				
-			}catch (Exception e) {
-				return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error Refresh Token::" + e.getMessage());
-			}
-			
-			
-		
-		
-	}
-	
+	/*
+	 * @PostMapping(path="/refresh") public ResponseEntity<?>
+	 * loginUsuario(@RequestBody Map<String, String> request){ String refreshToken =
+	 * request.get("refreshToken");
+	 * 
+	 * try {
+	 * 
+	 * String username = jwtUtilService.extractUsername(refreshToken); UserDetails
+	 * userDetails = this.userDetailsService.loadUserByUsername(username); Usuario
+	 * usuario = usuRepo.findByUsuario(username);
+	 * 
+	 * if(jwtUtilService.validateToken(refreshToken, userDetails)) { String newJwt =
+	 * jwtUtilService.generateToken(userDetails, usuario.getTipo()); String
+	 * newRefreshToken = jwtUtilService.generateRefreshToken(userDetails,
+	 * usuario.getTipo());
+	 * 
+	 * 
+	 * AuthResponseDto authResponseDto = new AuthResponseDto();
+	 * authResponseDto.setToken(newJwt);
+	 * authResponseDto.setRefreshToken(newRefreshToken);
+	 * 
+	 * return new ResponseEntity<>(authResponseDto, HttpStatus.OK); }else { return
+	 * ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Refresh Token");
+	 * }
+	 * 
+	 * }catch (Exception e) { return
+	 * ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error Refresh Token::" +
+	 * e.getMessage()); }
+	 * 
+	 * 
+	 * 
+	 * 
+	 * }
+	 */
+    @PostMapping(path="/refresh")
+    public ResponseEntity<?> refreshUsuario(@RequestBody Map<String, String> request) {
+        String refreshToken = request.get("refreshToken");
+
+        try {
+            // Extraer el username del refresh token
+            String username = jwtUtilService.extractUsername(refreshToken);
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
+            // Buscar en la tabla de Empleados
+            Empleado empleado = empRepo.findByCorreo(username);
+
+            // Si no es empleado, buscar en la tabla de Huespedes
+            Huesped huesped = empleado == null ? huesRepo.findByCorreo(username) : null;
+
+            // Si no existe en ninguna tabla, el usuario no se encuentra
+            if (empleado == null && huesped == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuario no encontrado");
+            }
+
+            // Determinar el tipo de usuario según la tabla en la que lo encontramos
+            String tipoUsuario = empleado != null ? "Empleado" : "Huesped";
+
+            // Validar el refresh token
+            if (jwtUtilService.validateToken(refreshToken, userDetails)) {
+                // Generar nuevos tokens JWT
+                String newJwt = jwtUtilService.generateToken(userDetails, tipoUsuario);
+                String newRefreshToken = jwtUtilService.generateRefreshToken(userDetails, tipoUsuario);
+
+                // Crear la respuesta con los nuevos tokens
+                AuthResponseDto authResponseDto = new AuthResponseDto(newJwt, newRefreshToken);
+                return new ResponseEntity<>(authResponseDto, HttpStatus.OK);
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Refresh Token");
+            }
+
+        } catch (Exception e) {
+            // Capturar cualquier error en el proceso de refrescar el token
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Error Refresh Token: " + e.getMessage());
+        }
+    }
 	
 	
 	
