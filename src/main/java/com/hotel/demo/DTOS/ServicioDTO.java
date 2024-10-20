@@ -1,5 +1,7 @@
 package com.hotel.demo.DTOS;
 
+import com.hotel.demo.modelo.Empleado;
+
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 
@@ -13,6 +15,8 @@ public class ServicioDTO {
 	@NotNull(message="Campo Precio Servicio no puede ser nulo")
 	@Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros")
 	private double precio;
+	@NotNull(message="Campo Empleado Servicio no puede ser nulo")
+	private Empleado empleado;
 	
 	public ServicioDTO(int id_servicio, String tipo, String nombre, double precio) {
 		super();

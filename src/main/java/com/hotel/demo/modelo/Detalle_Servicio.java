@@ -5,9 +5,14 @@
   import jakarta.persistence.GenerationType; import jakarta.persistence.Id;
   import jakarta.persistence.JoinColumn; import jakarta.persistence.ManyToOne;
   import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
   
   @Entity
-  
+  @Data // Genera getters, setters, toString, equals y hashCode
+  @NoArgsConstructor // Genera un constructor sin parámetros
+  @AllArgsConstructor 
   @Table(name = "detalle_servicio")
   public class Detalle_Servicio {
   
@@ -31,74 +36,7 @@
 	private Servicio servicio;
 
   
-  public Detalle_Servicio() { super(); }
-  
-  
-  
-  
-
-
-
-public Detalle_Servicio(int id_detaserv, Time hora_serv, String estado_serv, Reserva reserva, Empleado empleado,
-		Servicio servicio) {
-	super();
-	this.id_detaserv = id_detaserv;
-	this.hora_serv = hora_serv;
-	this.estado_serv = estado_serv;
-	this.reserva = reserva;
-	this.empleado = empleado;
-	this.servicio = servicio;
-}
-
-
-public int getId_detaserv() { return id_detaserv; }
-  
-  public void setId_detaserv(int id_detaserv) { this.id_detaserv = id_detaserv;
-  }
-  
-  public Time getHora_serv() { return hora_serv; }
-  
-  public void setHora_serv(Time hora_serv) { this.hora_serv = hora_serv; }
-  
-  public String getEstado_serv() { return estado_serv; }
-  
-  public void setEstado_serv(String estado_serv) { this.estado_serv =
-  estado_serv; }
-
-
-public Reserva getReserva() {
-	return reserva;
-}
-
-
-
-public void setReserva(Reserva reserva) {
-	this.reserva = reserva;
-}
-
-
-
-public Empleado getEmpleado() {
-	return empleado;
-}
-
-
-public void setEmpleado(Empleado empleado) {
-	this.empleado = empleado;
-}
-
-
-
-public Servicio getServicio() {
-	return servicio;
-}
-
-
-
-public void setServicio(Servicio servicio) {
-	this.servicio = servicio;
-}
-  
+ 
 
   
   }

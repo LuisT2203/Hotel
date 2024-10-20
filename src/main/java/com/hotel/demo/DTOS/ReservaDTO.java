@@ -1,6 +1,7 @@
 package com.hotel.demo.DTOS;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
@@ -20,10 +21,8 @@ public class ReservaDTO {
 	private HabitacionDTO habitacion;
 	@NotNull(message="Campo Huesped no puede ser nulo")
 	private HuespedDTO huesped;
-	@NotNull(message="Campo Empleado no puede ser nulo")
-	private EmpleadoDTO empleado;
 	@NotNull(message="Campo Servicio no puede ser nulo")
-	private ServicioDTO servicio;
+	private List<ServicioDTO> servicio;
 	@NotNull(message="Campo Estado Reserva no puede ser nulo")
 	private String estado_reserva;
 	
@@ -33,8 +32,16 @@ public class ReservaDTO {
 		super();
 	}
 
-	public ReservaDTO(int nro_reserva, LocalDate fecha_reserva, int cant_personas, int cant_dias, HabitacionDTO habitacion,
-			HuespedDTO huesped, EmpleadoDTO empleado, ServicioDTO servicio, String estado_reserva) {
+	
+
+	public ReservaDTO(int nro_reserva,
+			@NotNull(message = "Campo Fecha Reserva no puede ser nulo") LocalDate fecha_reserva,
+			@NotNull(message = "Campo Cantidad Personas no puede ser nulo") @Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros") int cant_personas,
+			@NotNull(message = "Campo Cantidad Dias no puede ser nulo") @Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros") int cant_dias,
+			@NotNull(message = "Campo Habitacion no puede ser nulo") HabitacionDTO habitacion,
+			@NotNull(message = "Campo Huesped no puede ser nulo") HuespedDTO huesped,
+			@NotNull(message = "Campo Servicio no puede ser nulo") List<ServicioDTO> servicio,
+			@NotNull(message = "Campo Estado Reserva no puede ser nulo") String estado_reserva) {
 		super();
 		this.nro_reserva = nro_reserva;
 		this.fecha_reserva = fecha_reserva;
@@ -42,10 +49,11 @@ public class ReservaDTO {
 		this.cant_dias = cant_dias;
 		this.habitacion = habitacion;
 		this.huesped = huesped;
-		this.empleado = empleado;
 		this.servicio = servicio;
 		this.estado_reserva = estado_reserva;
 	}
+
+
 
 	public int getNro_reserva() {
 		return nro_reserva;
@@ -106,21 +114,19 @@ public class ReservaDTO {
 		this.huesped = huesped;
 	}
 
-	public EmpleadoDTO getEmpleado() {
-		return empleado;
-	}
 
-	public void setEmpleado(EmpleadoDTO empleado) {
-		this.empleado = empleado;
-	}
 
-	public ServicioDTO getServicio() {
+	public List<ServicioDTO> getServicio() {
 		return servicio;
 	}
 
-	public void setServicio(ServicioDTO servicio) {
+
+
+	public void setServicio(List<ServicioDTO> servicio) {
 		this.servicio = servicio;
 	}
+
+	
 
 
 

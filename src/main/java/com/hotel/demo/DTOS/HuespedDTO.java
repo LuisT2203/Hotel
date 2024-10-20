@@ -1,6 +1,7 @@
 package com.hotel.demo.DTOS;
 
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 
@@ -13,27 +14,41 @@ public class HuespedDTO {
 	private String apellido;
 	@NotNull(message="Campo Direccion Huesped no puede ser nulo")
 	private String direccion;
-	@NotNull(message="Campo Email Huesped no puede ser nulo")
-	private String email;	
+	@NotNull(message="Campo Sexo Huesped no puede ser nulo")
+	@Email(message="Campo debe ser un email")
+	private String correo;	
 	@NotNull(message="Campo Sexo Huesped no puede ser nulo")
 	private String sexo;
 	@NotNull(message="Campo Edad Huesped no puede ser nulo")
 	@Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros")
 	private int edad;
+	@NotNull(message="Campo Edad Huesped no puede ser nulo")
+	private String clave;
+	
+	
 	
 	public HuespedDTO() {
 		super();
 	}
 
-	public HuespedDTO(int id_huesped, String nombre, String apellido, String direccion, String email, String sexo, int edad) {
+	public HuespedDTO(int id_huesped, String nombre, String apellido, String direccion, String correo, String sexo, int edad) {
 		super();
 		this.id_huesped = id_huesped;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.direccion = direccion;
-		this.email = email;
+		this.correo = correo;
 		this.sexo = sexo;
 		this.edad = edad;
+	}
+	
+
+	public String getClave() {
+		return clave;
+	}
+
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	public int getId_huesped() {
@@ -68,12 +83,12 @@ public class HuespedDTO {
 		this.direccion = direccion;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getCorreo() {
+		return correo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCorreo(String correo) {
+		this.correo = correo;
 	}
 
 	public String getSexo() {
