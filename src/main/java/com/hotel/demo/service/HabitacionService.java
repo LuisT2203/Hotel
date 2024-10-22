@@ -19,7 +19,7 @@ public class HabitacionService  {
 	private IHabitacion data;
 	
 	
-	public List<Habitacion> listar() {
+	public List<Habitacion> listarHabitacion() {
 		return (List<Habitacion>)data.findAll();
 	}
 
@@ -48,24 +48,5 @@ public class HabitacionService  {
 		
 		
 	}
-
-	/*
-	 * @Override
-	 * 
-	 * @Transactional public void GuardarYFlushear(Habitacion habitacion) { Reserva
-	 * reserva = habitacion.getObjReserva(); // Asumiendo que hay un método
-	 * getReserva en Habitacion
-	 * 
-	 * if (reserva != null) { habitacion.setEstado("No Disponible");
-	 * data.saveAndFlush(habitacion); } }
-	 */
-
-	/*
-	 * @Override public void flush() { data.flush(); }
-	 */
-	
-	
-
-	
 
 }

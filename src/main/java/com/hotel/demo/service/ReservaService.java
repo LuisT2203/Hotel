@@ -98,12 +98,12 @@ public class ReservaService{
 	 
 
 		    // Otros métodos
-
+/*
 		    public double obtenerPrecioServicioPorId(int idServicio) {
 		        Optional<Servicio> servicioOptional = serviceS.listarId1(idServicio);
 		        return servicioOptional.map(Servicio::getPrecio).orElse(0.0); // Cambiado a 0.0 para que sea un valor double
 		    }
-
+*/
 		    // Otros métodos
 		
 	

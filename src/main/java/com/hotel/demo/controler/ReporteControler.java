@@ -31,10 +31,10 @@ public class ReporteControler {
 		private HabitacionService serviceHa;
 
 	    @GetMapping("/reserva_pago")
-	    public String mostrarReservaPago(Model model) {
+	    public String mostrarReservaPago(Model model) throws Exception {
 	        // Supongamos que tienes servicios para obtener las listas de entidades
 	        List<Reserva> reservas = serviceR.listarReserva();
-	        List<Habitacion> habitaciones = serviceHa.listar();
+	        List<Habitacion> habitaciones = serviceHa.listarHabitacion();
 	        List<Servicio> servicios = serviceS.listarServicio();
 
 	        // Agrega las listas al modelo para que puedan ser utilizadas en la vista

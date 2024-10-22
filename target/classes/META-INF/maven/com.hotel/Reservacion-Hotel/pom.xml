@@ -45,11 +45,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.cl2</groupId>
-			<artifactId>Cl2_Luis_Teran</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

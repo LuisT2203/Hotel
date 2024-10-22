@@ -1,4 +1,5 @@
 package com.hotel.demo.modelo;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,9 +11,13 @@ import jakarta.persistence.Table;
 public class Servicio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_servicio")
 	private int id_servicio;
+	@Column(name = "tipo")
 	private String tipo;
+	@Column(name = "nombre")
 	private String nombre;
+	@Column(name = "precio")
 	private double precio;
 	
 	public Servicio(int id_servicio, String tipo, String nombre, double precio) {
