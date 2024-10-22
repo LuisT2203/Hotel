@@ -16,18 +16,33 @@ public class ServicioDTO {
 	@Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros")
 	private double precio;
 	@NotNull(message="Campo Empleado Servicio no puede ser nulo")
-	private Empleado empleado;
+	private EmpleadoDTO empleado;
 	
-	public ServicioDTO(int id_servicio, String tipo, String nombre, double precio) {
+	
+
+	public ServicioDTO(int id_servicio, @NotNull(message = "Campo Tipo Servicio no puede ser nulo") String tipo,
+			@NotNull(message = "Campo Nombre Servicio no puede ser nulo") String nombre,
+			@NotNull(message = "Campo Precio Servicio no puede ser nulo") @Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros") double precio,
+			@NotNull(message = "Campo Empleado Servicio no puede ser nulo") EmpleadoDTO empleado) {
 		super();
 		this.id_servicio = id_servicio;
 		this.tipo = tipo;
 		this.nombre = nombre;
 		this.precio = precio;
+		this.empleado = empleado;
 	}
 
 	public ServicioDTO() {
 		super();
+	}
+
+	
+	public EmpleadoDTO getEmpleado() {
+		return empleado;
+	}
+
+	public void setEmpleado(EmpleadoDTO empleado) {
+		this.empleado = empleado;
 	}
 
 	public int getId_servicio() {
