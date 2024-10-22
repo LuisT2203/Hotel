@@ -89,7 +89,7 @@ public class ControladorDetalleReserva {
 	public ResponseEntity<?> insertarDetalleReserva(@Valid @RequestBody Detalle_ReservaDTO bean) throws Exception{
 		try {
 			Detalle_Reserva det = mapper.map(bean, Detalle_Reserva.class);
-			Detalle_Reserva detr = serviceDR.GuardarDR(det);
+			Detalle_Reserva detr = serviceDR.crearReservaConDetalle(det);
 			Detalle_ReservaDTO d = mapper.map(detr, Detalle_ReservaDTO.class);
 			return new ResponseEntity<>(MensajeResponse.builder()
 					.mensaje("Se agrego correctamente la habitacion")
@@ -116,7 +116,7 @@ public class ControladorDetalleReserva {
 		}
 	}
 	
-	@DeleteMapping("/{id_servicio}")
+	@DeleteMapping("/{Id_detreserva}")
     public ResponseEntity<?> eliminar(@PathVariable("Id_detreserva") int Id_detreserva) {
         try {
             Detalle_Reserva eliminado = serviceDR.BorrarYDisponibilizar(Id_detreserva);
