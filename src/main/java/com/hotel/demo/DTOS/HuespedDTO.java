@@ -2,27 +2,28 @@ package com.hotel.demo.DTOS;
 
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 
 public class HuespedDTO {
 	
 	private int id_huesped;
-	@NotNull(message="Campo Nombre Huesped no puede ser nulo")
+	@NotBlank(message="Campo Nombre Huesped no puede ser nulo")
 	private String nombre;
-	@NotNull(message="Campo Apellido Huesped no puede ser nulo")
+	@NotBlank(message="Campo Apellido Huesped no puede ser nulo")
 	private String apellido;
-	@NotNull(message="Campo Direccion Huesped no puede ser nulo")
+	@NotBlank(message="Campo Direccion Huesped no puede ser nulo")
 	private String direccion;
-	@NotNull(message="Campo Sexo Huesped no puede ser nulo")
+	@NotBlank(message="Campo Sexo Huesped no puede ser nulo")
 	@Email(message="Campo debe ser un email")
 	private String correo;	
-	@NotNull(message="Campo Sexo Huesped no puede ser nulo")
+	@NotBlank(message="Campo Sexo Huesped no puede ser nulo")
 	private String sexo;
 	@NotNull(message="Campo Edad Huesped no puede ser nulo")
 	@Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros")
 	private int edad;
-	@NotNull(message="Campo Edad Huesped no puede ser nulo")
+	@NotBlank(message="Campo Edad Huesped no puede ser nulo")
 	private String clave;
 	
 	

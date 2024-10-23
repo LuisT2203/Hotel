@@ -1,19 +1,22 @@
 package com.hotel.demo.DTOS;
 
 import java.time.LocalDate;
+
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 
-
+@Data
 public class Detalle_ReservaDTO {
 	
 	
 	private int id_detareser;
 	@NotNull(message="Campo Fecha de Ingreso no puede ser nulo")
 	private LocalDate fecha_ingreso;
-	@NotNull(message="Campo Hora de Entrada de Ingreso no puede ser nulo")
+	@NotBlank(message="Campo Hora de Entrada de Ingreso no puede ser nulo")
 	private String hora_entrada;
-	@NotNull(message="Campo Hora de Salida no puede ser nulo")
+	@NotBlank(message="Campo Hora de Salida no puede ser nulo")
 	private String hora_salida;
 	@NotNull(message="Campo Fecha de Salida no puede ser nulo")
 	private LocalDate fecha_salida;

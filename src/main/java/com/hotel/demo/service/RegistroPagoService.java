@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hotel.demo.interfaces.IRegistroPago;
-import com.hotel.demo.interfacesService.IregistroPagoService;
+
 
 
 import com.hotel.demo.modelo.Detalle_Reserva;

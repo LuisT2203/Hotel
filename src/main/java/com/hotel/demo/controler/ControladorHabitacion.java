@@ -108,7 +108,7 @@ public class ControladorHabitacion {
 	}
 
 	// Metodo eliminar por id [faltaria agregar un mensaje de cofirmacion de que se elimino correctamente]
-		@DeleteMapping("/eliminar/{Nro_habi}")
+		@DeleteMapping("/{Nro_habi}")
 		public ResponseEntity<?> eliminar(@PathVariable("Nro_habi") int Nro_habi) {
 	        try {
 	            Habitacion eliminado = service.Borrar(Nro_habi);

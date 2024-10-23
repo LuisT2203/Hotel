@@ -1,14 +1,16 @@
 
   package com.hotel.demo.DTOS; import java.sql.Time;
-  
+
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
   
- 
+ @Data
   public class Detalle_ServicioDTO {
  
   private int id_detaserv;
   private Time hora_serv; 
-  @NotNull(message="Campo Estado Servicio no puede ser nulo")
+  @NotBlank(message="Campo Estado Servicio no puede ser nulo")
   private String estado_serv; 
   @NotNull(message="Campo Reserva no puede ser nulo")
   private ReservaDTO reserva;

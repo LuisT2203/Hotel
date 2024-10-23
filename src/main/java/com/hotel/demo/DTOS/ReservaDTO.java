@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class ReservaDTO {
@@ -23,7 +24,7 @@ public class ReservaDTO {
 	private HuespedDTO huesped;
 	@NotNull(message="Campo Servicio no puede ser nulo")
 	private List<ServicioDTO> servicios;
-	@NotNull(message="Campo Estado Reserva no puede ser nulo")
+	@NotBlank(message="Campo Estado Reserva no puede ser nulo")
 	private String estado_reserva;
 	
 	

@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotel.demo.DTOS.Registro_PagoDTO;
-import com.hotel.demo.interfacesService.IregistroPagoService;
+
 import com.hotel.demo.modelo.Empleado;
 import com.hotel.demo.modelo.Registro_Pago;
 import com.hotel.demo.modelo.Reserva;

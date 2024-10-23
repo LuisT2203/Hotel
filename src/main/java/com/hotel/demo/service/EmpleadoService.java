@@ -29,7 +29,7 @@ public class EmpleadoService{
 	}
 
 	
-	public Empleado Guardar(Empleado e) {
+	public Empleado Guardar(Empleado e) throws Exception {
         // Encriptamos la contraseña antes de guardar
         e.setClave(passwordEncoder.encode(e.getClave()));
         return data.save(e);

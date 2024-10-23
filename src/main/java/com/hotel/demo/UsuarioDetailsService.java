@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.hotel.demo.interfaces.IEmpleado;
 import com.hotel.demo.interfaces.IHuesped;
-import com.hotel.demo.interfaces.UsuarioRepository;
+
 import com.hotel.demo.modelo.Empleado;
 import com.hotel.demo.modelo.Huesped;
-import com.hotel.demo.modelo.Usuario;
+
 @Service
 public class UsuarioDetailsService implements UserDetailsService {
 	

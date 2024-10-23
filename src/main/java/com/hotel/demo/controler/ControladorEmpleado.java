@@ -107,7 +107,7 @@ public class ControladorEmpleado {
 		}
 	}
 
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminarDetalleServicio(@PathVariable Integer id) throws Exception{
 		try {
             Empleado eliminado = service.Borrar(id);

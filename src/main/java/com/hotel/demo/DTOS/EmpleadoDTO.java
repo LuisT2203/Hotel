@@ -1,21 +1,25 @@
 package com.hotel.demo.DTOS;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-
+import lombok.Data;
+@Data
 public class EmpleadoDTO {
 	
 	private Integer id_emp;
-	@NotNull(message="Campo nombre Empleado no puede ser nulo")
+	@NotBlank(message="Campo nombre Empleado no puede ser nulo")
 	private String nombre_emp;
-	@NotNull(message="Campo Apellido Empleado no puede ser nulo")
+	@NotBlank(message="Campo Apellido Empleado no puede ser nulo")
 	private String apellido_emp;
-	@NotNull(message="Campo Sexo Empleado no puede ser nulo")
+	@NotBlank(message="Campo Sexo Empleado no puede ser nulo")
 	private String sexo_emp;
-	@NotNull(message="Campo Cargo Empleado no puede ser nulo")
+	@NotBlank(message="Campo Cargo Empleado no puede ser nulo")
 	private String cargo_emp;
-	@NotNull(message="Campo Correo Empleado no puede ser nulo")
+	@NotBlank(message="Campo Correo Empleado no puede ser nulo")
+	@Email(message="Tiene que ser un correo")
 	private String correo;
-	@NotNull(message="Campo Clave Empleado no puede ser nulo")
+	@NotBlank(message="Campo Clave Empleado no puede ser nulo")
 	private String clave;
 	
 	public EmpleadoDTO() {

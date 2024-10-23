@@ -2,14 +2,15 @@ package com.hotel.demo.DTOS;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class HabitacionDTO {
 	
 	private int nro_habi;
-	@NotNull(message="Campo Descripcion Habitacion no puede ser nulo")
+	@NotBlank(message="Campo Descripcion Habitacion no puede ser nulo")
 	private String descripcion;
-	@NotNull(message="Campo Estado Habitacion no puede ser nulo")
+	@NotBlank(message="Campo Estado Habitacion no puede ser nulo")
 	private String estado;
 	@NotNull(message="Campo Precio Habitacion no puede ser nulo")
 	@Digits(integer = 10, fraction = 0, message = "El campo debe contener solo números enteros")

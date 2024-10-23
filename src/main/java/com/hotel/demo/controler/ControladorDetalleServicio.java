@@ -120,7 +120,7 @@ public class ControladorDetalleServicio {
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> eliminarDetalleServicio(@PathVariable Integer id) throws Exception{
 		try {
             Detalle_Servicio eliminado = serviceDS.Borrar(id);

@@ -71,7 +71,7 @@ public class DetalleReservaService {
 		}
 	
 	@Transactional
-	public Detalle_Reserva crearReservaConDetalle(Detalle_Reserva detreserva) {
+	public Detalle_Reserva crearReservaConDetalle(Detalle_Reserva detreserva)throws Exception {
 	    // Obtener la habitación por ID
 	    Habitacion habitacion = ServiceH.listarNro(detreserva.getHabitacion().getNro_habi());
 
